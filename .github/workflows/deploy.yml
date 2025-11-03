@@ -5,12 +5,22 @@ on:
         branches:
             - main
 
+# Grant the workflow permission to push to the repository and publish Pages
+permissions:
+    contents: write
+    pages: write
+    id-token: write
+
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+              with:
+                  # keep the GITHUB_TOKEN credential so the workflow can push
+                  persist-credentials: true
+                  fetch-depth: 0
 
             - name: Use Node.js
               uses: actions/setup-node@v4
