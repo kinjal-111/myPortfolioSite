@@ -58,14 +58,23 @@ const TechOrbit = () => {
       {/* 👇 Center Profile Photo */}
       <div className="absolute flex items-center justify-center">
         <div className="relative">
-          {/* Glowing ring effect */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/30 to-accent/30 blur-2xl animate-pulse"></div>
+          {/* Subtle glowing ring effect - much lighter and no blur */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 -z-10 scale-110"></div>
 
           {/* Your photo */}
           <img
-            src="/kinjal-photo.png"
+            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/kinjal-photo.png`}
             alt="Kinjal Parekh"
-            className="w-36 h-36 rounded-full border-2 border-primary/40 shadow-xl object-cover hover:scale-105 transition-transform duration-300"
+            className="w-36 h-36 rounded-full border-2 border-primary/40 shadow-xl object-cover hover:scale-105 transition-transform duration-300 relative z-10 bg-background"
+            style={{
+              imageRendering: 'auto',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale'
+            }}
+            loading="eager"
           />
         </div>
       </div>
